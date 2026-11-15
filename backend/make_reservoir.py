@@ -1,3 +1,9 @@
+"""Derive the Jatiluhur reservoir outline and five illustrative zones from the NISAR HH window.
+
+Reads artifacts/window.npz (written by quicklook.py), keeps HH < -13 dB water, takes the
+largest connected component, and writes backend/reservoir_nisar.geojson and
+backend/zones_nisar.geojson.
+"""
 import numpy as np, json
 from scipy import ndimage
 from rasterio.features import shapes
@@ -23,13 +29,13 @@ aff = from_origin(float(x[0])-5, float(y[0])+5, 10, 10)
 poly = unary_union([shape(g) for g, v in shapes(res.astype("uint8"), mask=res, transform=aff) if v == 1]).simplify(20)
 back = Transformer.from_crs(epsg, 4326, always_xy=True).transform
 p = shapely.ops.transform(back, poly)
-json.dump({"type": "Feature", "properties": {"label": "Batas dari data NISAR 2026-11-06", "note": "Diturunkan otomatis dari masker air radar, perlu validasi"}, "geometry": mapping(p)}, open("backend/reservoir_nisar.geojson", "w"))
+json.dump({"type": "Feature", "properties": {"label": "Outline from NISAR data 2026-11-06", "note": "Derived automatically from a radar water mask, needs validation"}, "geometry": mapping(p)}, open("backend/reservoir_nisar.geojson", "w"))
 old = json.load(open("backend/zones.geojson"))["features"]
 minx, miny, maxx, maxy = p.bounds; w = (maxx-minx)/5; feats = []
 for i in range(5):
     z = p.intersection(box(minx+i*w, miny-0.01, minx+(i+1)*w, maxy+0.01))
     props = dict(old[i]["properties"]) if i < len(old) else {"limit": 3000}
-    props.update({"id": f"Z-0{i+1}", "name": f"Zona {i+1} ({['Barat','Barat-Tengah','Tengah','Timur-Tengah','Timur'][i]})", "area_ha": round(shapely.ops.transform(Transformer.from_crs(4326, epsg, always_xy=True).transform, z).area/1e4, 1), "note": "Pembagian zona ilustratif (pita bujur), bukan zona resmi PJT II; batas kapasitas contoh"})
+    props.update({"id": f"Z-0{i+1}", "name": f"Zone {i+1} ({['West','West-Central','Central','East-Central','East'][i]})", "area_ha": round(shapely.ops.transform(Transformer.from_crs(4326, epsg, always_xy=True).transform, z).area/1e4, 1), "note": "Illustrative zoning (longitude bands), not official PJT II zones; sample capacity limits"})
     feats.append({"type": "Feature", "properties": props, "geometry": mapping(z)})
 json.dump({"type": "FeatureCollection", "features": feats}, open("backend/zones_nisar.geojson", "w"))
 print([ (f["properties"]["id"], f["properties"]["area_ha"], f["properties"].get("limit")) for f in feats])

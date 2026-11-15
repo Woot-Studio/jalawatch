@@ -1,6 +1,6 @@
 # JalaWatch — Frontend Handoff (Desktop)
 
-Build a static desktop frontend (HTML/CSS/JS, no framework needed) for **JalaWatch**, a NASA Space Apps 2026 concept. It estimates floating fish cage (keramba) counts at Waduk Jatiluhur, Purwakarta, using NISAR L2 GCOV radar data (HH/HV) from ASF. Copy is in Indonesian. Desktop only; mobile comes later.
+Build a static desktop frontend (HTML/CSS/JS, no framework needed) for **JalaWatch**, a NASA Space Apps 2026 concept. It estimates floating fish cage counts at Jatiluhur Reservoir, Purwakarta, West Java, using NISAR L2 GCOV radar data (HH/HV) from ASF. The site copy was originally written in Indonesian and is now in English; quoted copy below uses the current English wording. Desktop only; mobile comes later.
 
 ## Sources
 - Motion/visual design (Jitter): https://jitter.video/file/?id=uXS330DNUTmPyc7Ivk6rIT26
@@ -16,14 +16,14 @@ Illustrative underwater storytelling site. Full-viewport vertical sections, para
 - Glass cards only where they sit over the scene. Pill CTAs. No eyebrow labels, emoji bullets, or filler icons.
 
 ## Sections (in scroll order)
-1. **Hero** — Daytime Jatiluhur with cages, a boat, and a satellite beam. The wordmark has a rotating sonar mark. Headline "Pantau keramba Jatiluhur / dari orbit" with the second line in coral. A "Lihat dashboard" pill, plus a "Gulir untuk menyelam" scroll cue.
-2. **Plunge** — The waterline wipes up and reveals nets, bubbles, and fish. Headline "Radar menembus awan / dan kabut."
-3. **Dashboard** — Leaflet map of the reservoir with zones, a sonar sweep, and cages drawn as blinking dots. The estimated total counts up (17.799). Moving the date slider from 14 to 26 Okt changes the total to 18.158 and shows a "+359 sejak 14 Okt" badge, and over-limit zones pulse red. Also a Chart.js trend chart, an export button, and a zone status list.
-4. **Fitur carousel** — Spring carousel of 4 cards: 01 Jumlah keramba, 02 Peta kepadatan, 03 Bandingkan tanggal, 04 Ekspor laporan. The center card is about 1.2× scale; side cards are 0.8× at 60% opacity.
-5. **Tentang data** — A signal travels through the 9-step pipeline: read with h5py, crop, convert to dB, speckle filter, water mask, bright-target threshold, clustering, count per zone, density grid. Includes a radar tile illustration, a caveat with a "Perlu validasi" chip, downloads (CSV, GeoJSON, PNG/GeoTIFF), and NASA/ISRO/ASF credits.
+1. **Hero** — Daytime Jatiluhur with cages, a boat, and a satellite beam. The wordmark has a rotating sonar mark. Headline "Watching Jatiluhur’s fish cages / from orbit" with the second line in coral. A "View dashboard" pill, plus a "Scroll to dive in" scroll cue.
+2. **Plunge** — The waterline wipes up and reveals nets, bubbles, and fish. Headline "Radar sees through clouds / and haze."
+3. **Dashboard** — Leaflet map of the reservoir with zones, a sonar sweep, and cages drawn as blinking dots. The estimated total counts up. In the original design mock-up (example data), moving the date slider from 14 to 26 Oct changed the total from 17,799 to 18,158 and showed a "+359 since 14 Oct" badge, and over-limit zones pulse red. Also a Chart.js trend chart, an export button, and a zone status list.
+4. **Features carousel** — Spring carousel of 4 cards: 01 Cage count, 02 Density map, 03 Compare dates, 04 Export report. The center card is about 1.2× scale; side cards are 0.8× at 60% opacity.
+5. **About the data** — A signal travels through the 9-step pipeline: read with h5py, crop, convert to dB, speckle filter, water mask, bright-target threshold, clustering, count per zone, density grid. Includes a radar tile illustration, a caveat with a "Needs validation" chip, downloads (CSV, GeoJSON, PNG/GeoTIFF), and NASA/ISRO/ASF credits.
 
 ## Data
-Every number is example data. Label it "Contoh data" and "estimasi, perlu validasi lapangan". Load it from a local JSON or CSV so real pipeline output can replace it later.
+In this original brief every number was example data, labelled "Sample data" and "estimate, needs field validation", loaded from local JSON/CSV so real pipeline output could replace it later. The site now shows real NISAR output from 6 Nov 2026 (see README).
 
 ## Done when
 - All 5 sections work at 1440px wide.
@@ -48,9 +48,9 @@ Every number is example data. Label it "Contoh data" and "estimasi, perlu valida
    - PNG or GeoTIFF density maps
 
    Make the thresholds configurable. Add a `--demo` flag that generates synthetic outputs so the frontend runs without any real `.h5` file. Include a `requirements.txt` and use a uv- or pip-based setup.
-2. **"Zona saya" (cage farmer).** The user picks their own zone and sees that zone's estimated density, its status, and its trend.
-3. **"Unduh data olahan" (researcher).** Download buttons for the CSV, GeoJSON, and PNG outputs, with a short description of each file's format.
-4. **Validation note.** The "Tentang data" section explains that every estimate is checked visually against Google Earth imagery. It also states the hypothesis: calm water appears dark in radar and cages may appear as bright points, so the estimates still need field validation.
+2. **"My zone" (cage farmer).** The user picks their own zone and sees that zone's estimated density, its status, and its trend.
+3. **"Download processed data" (researcher).** Download buttons for the CSV, GeoJSON, and PNG outputs, with a short description of each file's format.
+4. **Validation note.** The "About the data" section explains that every estimate is checked visually against Google Earth imagery. It also states the hypothesis: calm water appears dark in radar and cages may appear as bright points, so the estimates still need field validation.
 5. **Deploy.** Add a GitHub Actions workflow that builds with Bun and deploys to GitHub Pages. Also make the project deployable to Vercel.
 6. **Zones over the limit (reservoir authority).** A list or table of zones whose estimate is over the limit, linked to the map.
 

@@ -43,6 +43,6 @@ class PipelineTest(unittest.TestCase):
             with rasterio.open(out/'density-2026-10-14.tif') as src:
                 self.assertEqual(src.crs.to_epsg(),32748)
                 self.assertGreater(float(src.read(1,masked=True).max()),0)
-                self.assertIn('validasi',src.tags()['note'])
+                self.assertIn('validation',src.tags()['note'])
 
 if __name__=='__main__':unittest.main()

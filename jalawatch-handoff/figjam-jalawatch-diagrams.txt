@@ -27,7 +27,7 @@
     <connector id="1:86" x="1038.4000244140625" y="316.79998779296875" connectorStart="1:18" connectorStartCap="NONE" connectorEnd="1:36" connectorEndCap="NONE"></connector>
     <shape-with-text id="1:39" x="1116.800048828125" y="444.79998779296875" width="268.79998779296875" height="153.60000610351562" name="SQUARE">Support early overcrowding warning and zoning enforcement; potential expansion to Cirata and Saguling</shape-with-text>
     <connector id="1:90" x="1038.4000244140625" y="521.5999755859375" connectorStart="1:21" connectorStartCap="NONE" connectorEnd="1:39" connectorEndCap="NONE"></connector>
-    <shape-with-text id="1:42" x="784" y="649.5999755859375" width="268.79998779296875" height="153.60000610351562" name="SQUARE">NASA Space Apps 2026 concept: Waduk Jatiluhur, Purwakarta, West Java; downstream water supply including Jakarta</shape-with-text>
+    <shape-with-text id="1:42" x="784" y="649.5999755859375" width="268.79998779296875" height="153.60000610351562" name="SQUARE">NASA Space Apps 2026 concept: Jatiluhur Reservoir, Purwakarta, West Java; downstream water supply including Jakarta</shape-with-text>
     <connector id="1:94" x="653.7142944335938" y="419.20001220703125" connectorStart="1:3" connectorStartCap="NONE" connectorEnd="1:42" connectorEndCap="NONE"></connector>
   </section>
   <section id="2:116" name="2. Use Case Diagram" x="1852.5999755859375" y="240" width="792" height="2768">

@@ -1,3 +1,4 @@
+"""Quick-look overlay: NISAR HH backscatter with the reservoir outline and detected cage blocks."""
 import json, numpy as np
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from pyproj import Transformer

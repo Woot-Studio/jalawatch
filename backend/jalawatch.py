@@ -20,8 +20,8 @@ from pyproj import Transformer, CRS
 from PIL import Image, PngImagePlugin
 
 ROOT = Path(__file__).resolve().parents[1]
-LABEL = 'Contoh data'
-NOTE = 'estimasi, perlu validasi lapangan'
+LABEL = 'Sample data'
+NOTE = 'estimate, needs field validation'
 
 def load_geometry(path):
     obj = json.loads(Path(path).read_text())
@@ -36,17 +36,17 @@ def read_gcov(path):
         candidates = []
         f.visititems(lambda name, obj: candidates.append(name) if isinstance(obj, h5py.Dataset) and name.endswith('/HHHH') else None)
         if not candidates:
-            raise ValueError(f'{path}: HHHH tidak ditemukan')
+            raise ValueError(f'{path}: HHHH not found')
         hh_ds = f[candidates[0]]
         group = hh_ds.parent
         hh, hv = hh_ds[:], group['HVHV'][:]
         if hh.shape != hv.shape or hh.ndim != 2:
-            raise ValueError('HHHH/HVHV harus berupa grid 2D dengan ukuran sama')
+            raise ValueError('HHHH/HVHV must be 2D grids of the same size')
         x, y = group['xCoordinates'][:], group['yCoordinates'][:]
         dx, dy = float(group['xCoordinateSpacing'][()]), float(group['yCoordinateSpacing'][()])
         crs = CRS.from_epsg(int(group['projection'][()]))
         if dx <= 0 or dy >= 0 or not crs.is_projected or crs.axis_info[0].unit_name != 'metre':
-            raise ValueError('Grid harus north-up, terproyeksi, dan bermeter')
+            raise ValueError('Grid must be north-up, projected, and in metres')
         affine = from_origin(float(x[0])-dx/2, float(y[0])-dy/2, dx, -dy)
         hh = np.where(hh == hh_ds.attrs.get('_FillValue', -9999), np.nan, hh)
         hv = np.where(hv == group['HVHV'].attrs.get('_FillValue', -9999), np.nan, hv)
@@ -57,7 +57,7 @@ def read_gcov(path):
         import re
         match = re.search(r'(20\d{6})', path.name)
         if not match:
-            raise ValueError('Tanggal akuisisi tidak ditemukan')
+            raise ValueError('Acquisition date not found')
         observed = date.fromisoformat(f'{match[1][:4]}-{match[1][4:6]}-{match[1][6:]}').isoformat()
     return hh, hv, affine, crs, observed
 
@@ -68,7 +68,7 @@ def pipeline(hh, hv, affine, crs, reservoir, args):
     inside = geometry_mask([mapping(polygon)], hh.shape, affine, invert=True)
     rows, cols = np.where(inside)
     if len(rows) == 0:
-        raise ValueError('Poligon waduk tidak beririsan dengan grid')
+        raise ValueError('Reservoir polygon does not intersect the grid')
     r0, r1, c0, c1 = rows.min(), rows.max()+1, cols.min(), cols.max()+1
     hh, hv, inside = hh[r0:r1,c0:c1], hv[r0:r1,c0:c1], inside[r0:r1,c0:c1]
     affine = affine * rasterio.Affine.translation(int(c0), int(r0))
@@ -87,7 +87,7 @@ def pipeline(hh, hv, affine, crs, reservoir, args):
     components, _ = ndimage.label(bright, structure=np.ones((3,3)))
     pixel_area = abs(affine.a*affine.e-affine.b*affine.d)
     if crs.is_geographic:
-        raise ValueError('Gunakan grid terproyeksi bermeter untuk estimasi luas')
+        raise ValueError('Use a projected grid in metres for area estimates')
     records = []
     back = Transformer.from_crs(crs, 4326, always_xy=True).transform
     component_sizes = np.bincount(components.ravel())
@@ -126,7 +126,7 @@ def publish(snapshots, reservoir, zones, output, args):
         snapshot = {'date':observed,'total':sum(counts),'zones':[]}
         for j,z in enumerate(zone_features):
             props = z['properties']; limit = props['limit']
-            status = 'Melebihi batas' if counts[j] > limit else 'Waspada' if counts[j] > limit*.8 else 'Aman'
+            status = 'Over limit' if counts[j] > limit else 'Watch' if counts[j] > limit*.8 else 'Safe'
             item = {'id':props['id'],'name':props['name'],'count':counts[j],'area_m2':round(areas[j],2),'limit':limit,'density':round(counts[j]/props['area_ha'],1),'status':status}
             snapshot['zones'].append(item)
             rows.append({'date':observed,**item,'label':LABEL,'note':NOTE})
@@ -135,7 +135,7 @@ def publish(snapshots, reservoir, zones, output, args):
         density = ndimage.gaussian_filter(density, args.density_sigma)*water
         with rasterio.open(output/f'density-{observed}.tif','w',driver='GTiff',height=density.shape[0],width=density.shape[1],count=1,dtype='float32',crs=crs,transform=affine,nodata=-9999,compress='deflate') as dst:
             dst.write(np.where(water,density,-9999),1)
-            dst.update_tags(label=LABEL,note=NOTE,units='estimasi keramba per sel')
+            dst.update_tags(label=LABEL,note=NOTE,units='estimated cages per cell')
         pos = density[density>0]; vmax = float(np.percentile(pos,99)) if pos.size else 1.0
         v = np.clip(density/max(vmax,1e-9),0,1)**0.6  # QA fix: stretch so non-peak areas stay visible
         rgba = np.stack([40+210*v,110+90*(1-v),180-90*v,np.where(water,220,0)],axis=-1).astype('uint8')
@@ -148,26 +148,30 @@ def publish(snapshots, reservoir, zones, output, args):
     write_json(output/'zones.geojson',zones)
     write_json(output/'reservoir.geojson',{'type':'Feature','properties':{'label':LABEL,'note':NOTE},'geometry':mapping(reservoir)})
     write_json(output/'summary.json',{'label':LABEL,'note':NOTE,'synthetic':args.demo,'snapshots':history,'density':f"density-{history[-1]['date']}", 'parameters':{k:v for k,v in vars(args).items() if isinstance(v,(int,float,bool))}})
-    print(f'{LABEL} — {NOTE}\n{len(history)} tanggal, {len(features)//2} blok → {output}')
+    print(f'{LABEL} — {NOTE}\n{len(history)} date(s), {len(features)//2} blocks → {output}')
 
 def write_json(path,obj):
     path.write_text(json.dumps(obj,ensure_ascii=False,default=str,separators=(',',':')))
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--demo',action='store_true'); p.add_argument('--raw',type=Path,default=ROOT/'data/raw')
-    p.add_argument('--reservoir',type=Path,default=ROOT/'backend/reservoir.geojson')
-    p.add_argument('--zones',type=Path,default=ROOT/'backend/zones.geojson')
-    p.add_argument('--output',type=Path,default=ROOT/'web/public/data')
-    p.add_argument('--target-db',type=float,default=-10); p.add_argument('--water-db',type=float,default=-16)
-    p.add_argument('--filter-size',type=int,default=3); p.add_argument('--min-pixels',type=int,default=4)
-    p.add_argument('--cage-area',type=float,default=100); p.add_argument('--density-sigma',type=float,default=30)
+    p.add_argument('--demo',action='store_true',help='run on a seeded synthetic radar grid instead of real NISAR files')
+    p.add_argument('--raw',type=Path,default=ROOT/'data/raw',help='folder with NISAR L2 GCOV .h5 files (default: data/raw)')
+    p.add_argument('--reservoir',type=Path,default=ROOT/'backend/reservoir.geojson',help='reservoir outline GeoJSON in EPSG:4326')
+    p.add_argument('--zones',type=Path,default=ROOT/'backend/zones.geojson',help='zone FeatureCollection in EPSG:4326 with id, name, limit, area_ha')
+    p.add_argument('--output',type=Path,default=ROOT/'web/public/data',help='output folder (default: web/public/data)')
+    p.add_argument('--target-db',type=float,default=-10,help='bright-target HH threshold in dB')
+    p.add_argument('--water-db',type=float,default=-16,help='water mask HV threshold in dB (pixels below are water)')
+    p.add_argument('--filter-size',type=int,default=3,help='median speckle filter window, odd number of pixels')
+    p.add_argument('--min-pixels',type=int,default=4,help='minimum pixels per candidate cage block')
+    p.add_argument('--cage-area',type=float,default=100,help='assumed area of one cage in m2')
+    p.add_argument('--density-sigma',type=float,default=30,help='Gaussian smoothing sigma for the density grid, in pixels')
     args=p.parse_args()
     global LABEL, NOTE
     if not args.demo:
-        LABEL, NOTE = 'Data asli NISAR', 'estimasi otomatis, perlu validasi lapangan'  # REAL_LABEL
+        LABEL, NOTE = 'Real NISAR data', 'automated estimate, needs field validation'  # REAL_LABEL
     if args.filter_size < 1 or args.filter_size%2 != 1 or args.cage_area <= 0 or args.min_pixels < 1 or args.density_sigma <= 0:
-        p.error('Ukuran filter harus ganjil positif; luas, piksel minimum, dan sigma harus positif')
+        p.error('Filter size must be a positive odd number; cage area, minimum pixels and sigma must be positive')
     reservoir=load_geometry(args.reservoir); zones=json.loads(args.zones.read_text())
     snapshots=[]
     if args.demo:
@@ -188,7 +192,7 @@ def main():
             dated=[]
             for j,g in enumerate(zone_geoms):
                 subset=[rec.copy() for rec in records if g.covers(rec['geometry'].centroid)]
-                if not subset: raise ValueError('Zona demo tidak memiliki kandidat')
+                if not subset: raise ValueError('Demo zone has no candidates')
                 for i,rec in enumerate(subset):
                     rec['count']=int(targets[j]//len(subset)+(i<targets[j]%len(subset)))
                     rec['area_m2']=rec['count']*args.cage_area
@@ -196,13 +200,13 @@ def main():
             snapshots.append((f'2026-10-{day}',dated,water,affine,crs))
     else:
         paths=sorted(args.raw.glob('*.h5'))
-        if not paths: p.error(f'Tidak ada .h5 di {args.raw}; gunakan --demo untuk contoh sintetis')
+        if not paths: p.error(f'No .h5 files in {args.raw}; use --demo for a synthetic example')
         for path in paths:
             hh,hv,affine,crs,observed=read_gcov(path)
             records,water,affine,crs=pipeline(hh,hv,affine,crs,reservoir,args)
             snapshots.append((observed,records,water,affine,crs))
     if len({s[0] for s in snapshots}) != len(snapshots):
-        p.error('Ada tanggal akuisisi duplikat; gabungkan produk ke satu grid per tanggal terlebih dahulu')
+        p.error('Duplicate acquisition dates; merge products into one grid per date first')
     publish(snapshots,reservoir,zones,args.output,args)
 
 if __name__=='__main__': main()

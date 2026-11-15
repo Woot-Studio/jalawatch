@@ -1,3 +1,4 @@
+"""Cut a Jatiluhur window from a NISAR GCOV .h5, print dB percentiles, save quick-look PNGs and artifacts/window.npz."""
 import h5py, numpy as np, sys
 from pyproj import Transformer
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
