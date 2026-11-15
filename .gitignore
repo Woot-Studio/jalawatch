@@ -1,0 +1,16 @@
+.tools/
+.venv/
+web/node_modules/
+web/dist/
+data/raw/*
+!data/raw/.gitkeep
+__pycache__/
+web/test-results/
+
+.venv/
+data/raw/
+*.h5
+*.bak
+artifacts/
+node_modules/
+web/dist/

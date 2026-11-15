@@ -1,0 +1,135 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
+<canvas id="0:1" name="Page 1" x="0" y="0" width="0" height="0">
+  <section id="1:45" name="1. Mindmap" x="243" y="64" width="1433.5999755859375" height="951.2000122070312">
+    <shape-with-text id="1:3" x="445.71429443359375" y="319.20001220703125" width="200" height="200" name="ELLIPSE">JalaWatch</shape-with-text>
+    <shape-with-text id="1:6" x="48" y="148.53334045410156" width="224" height="128" name="SQUARE">Problem</shape-with-text>
+    <connector id="1:46" x="280" y="212.53334045410156" connectorStart="1:6" connectorStartCap="NONE" connectorEnd="1:3" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:9" x="48" y="469.20001220703125" width="224" height="128" name="SQUARE">Solution</shape-with-text>
+    <connector id="1:50" x="280" y="419.20001220703125" connectorStart="1:9" connectorStartCap="NONE" connectorEnd="1:3" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:12" x="48" y="753.8666381835938" width="224" height="128" name="SQUARE">Data</shape-with-text>
+    <connector id="1:54" x="280" y="419.20001220703125" connectorStart="1:12" connectorStartCap="NONE" connectorEnd="1:3" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:15" x="806.4000244140625" y="54.400001525878906" width="224" height="128" name="SQUARE">Features</shape-with-text>
+    <connector id="1:58" x="653.7142944335938" y="118.39999389648438" connectorStart="1:3" connectorStartCap="NONE" connectorEnd="1:15" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:18" x="806.4000244140625" y="252.79998779296875" width="224" height="128" name="SQUARE">Users</shape-with-text>
+    <connector id="1:62" x="653.7142944335938" y="316.79998779296875" connectorStart="1:3" connectorStartCap="NONE" connectorEnd="1:18" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:21" x="806.4000244140625" y="457.6000061035156" width="224" height="128" name="SQUARE">Intended impact</shape-with-text>
+    <connector id="1:66" x="653.7142944335938" y="419.20001220703125" connectorStart="1:3" connectorStartCap="NONE" connectorEnd="1:21" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:24" x="432" y="127.19999694824219" width="224" height="128" name="SQUARE">Cage overcrowding; fish die-offs; water quality; slow manual counting</shape-with-text>
+    <connector id="1:70" x="280" y="191.1999969482422" connectorStart="1:6" connectorStartCap="NONE" connectorEnd="1:24" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:27" x="432" y="583.2000122070312" width="224" height="128" name="SQUARE">Cloud-penetrating radar; automatic cage detection estimates; density zones</shape-with-text>
+    <connector id="1:74" x="280" y="533.2000122070312" connectorStart="1:9" connectorStartCap="NONE" connectorEnd="1:27" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:30" x="432" y="775.2000122070312" width="224" height="128" name="SQUARE">NISAR L2 GCOV via ASF; HH/HV; reservoir boundary GeoJSON</shape-with-text>
+    <connector id="1:78" x="280" y="817.8666381835938" connectorStart="1:12" connectorStartCap="NONE" connectorEnd="1:30" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:33" x="1116.800048828125" y="48" width="246.39999389648438" height="140.8000030517578" name="SQUARE">Estimated cage count per date; green/yellow/red density heatmap; date slider; date-to-date change</shape-with-text>
+    <connector id="1:82" x="1038.4000244140625" y="118.39999389648438" connectorStart="1:15" connectorStartCap="NONE" connectorEnd="1:33" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:36" x="1116.800048828125" y="252.79998779296875" width="224" height="128" name="SQUARE">Fisheries office (Dinas Perikanan); reservoir authority (PJT II); cage farmers; researchers</shape-with-text>
+    <connector id="1:86" x="1038.4000244140625" y="316.79998779296875" connectorStart="1:18" connectorStartCap="NONE" connectorEnd="1:36" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:39" x="1116.800048828125" y="444.79998779296875" width="268.79998779296875" height="153.60000610351562" name="SQUARE">Support early overcrowding warning and zoning enforcement; potential expansion to Cirata and Saguling</shape-with-text>
+    <connector id="1:90" x="1038.4000244140625" y="521.5999755859375" connectorStart="1:21" connectorStartCap="NONE" connectorEnd="1:39" connectorEndCap="NONE"></connector>
+    <shape-with-text id="1:42" x="784" y="649.5999755859375" width="268.79998779296875" height="153.60000610351562" name="SQUARE">NASA Space Apps 2026 concept: Waduk Jatiluhur, Purwakarta, West Java; downstream water supply including Jakarta</shape-with-text>
+    <connector id="1:94" x="653.7142944335938" y="419.20001220703125" connectorStart="1:3" connectorStartCap="NONE" connectorEnd="1:42" connectorEndCap="NONE"></connector>
+  </section>
+  <section id="2:116" name="2. Use Case Diagram" x="1852.5999755859375" y="240" width="792" height="2768">
+    <shape-with-text id="2:70" x="48" y="698.4000244140625" width="224" height="128" name="SQUARE">Actor: Fisheries officer</shape-with-text>
+    <shape-with-text id="2:73" x="48" y="2508" width="224" height="128" name="SQUARE">Actor: Reservoir authority</shape-with-text>
+    <shape-with-text id="2:76" x="48" y="132" width="224" height="128" name="SQUARE">Actor: Cage farmer</shape-with-text>
+    <shape-with-text id="2:79" x="48" y="396" width="224" height="128" name="SQUARE">Actor: Researcher</shape-with-text>
+    <shape-with-text id="2:82" x="48" y="1748" width="224" height="128" name="SQUARE">Actor: Data team</shape-with-text>
+    <section id="2:115" name="JalaWatch" x="448" y="48" width="296" height="2672">
+      <shape-with-text id="2:85" x="48" y="840" width="200" height="200" name="ELLIPSE">View estimated cage count</shape-with-text>
+      <shape-with-text id="2:88" x="48" y="1104" width="200" height="200" name="ELLIPSE">View estimated density map</shape-with-text>
+      <shape-with-text id="2:91" x="48" y="576" width="200" height="200" name="ELLIPSE">Compare dates</shape-with-text>
+      <shape-with-text id="2:94" x="48" y="1368" width="200" height="200" name="ELLIPSE">Export report</shape-with-text>
+      <shape-with-text id="2:97" x="48" y="2424" width="200" height="200" name="ELLIPSE">Check zones estimated over the limit</shape-with-text>
+      <shape-with-text id="2:100" x="48" y="48" width="200" height="200" name="ELLIPSE">See own zone&#39;s estimated density</shape-with-text>
+      <shape-with-text id="2:103" x="48" y="312" width="200" height="200" name="ELLIPSE">Download processed data</shape-with-text>
+      <shape-with-text id="2:106" x="48" y="1896" width="200" height="200" name="ELLIPSE">Download .h5 from ASF (Earthdata Login)</shape-with-text>
+      <shape-with-text id="2:109" x="48" y="2160" width="200" height="200" name="ELLIPSE">Run detection script</shape-with-text>
+      <shape-with-text id="2:112" x="48" y="1632" width="200" height="200" name="ELLIPSE">Publish outputs</shape-with-text>
+    </section>
+    <connector id="2:153" x="280" y="1780" connectorStart="2:82" connectorStartCap="NONE" connectorEnd="2:112" connectorEndCap="NONE"></connector>
+    <connector id="2:149" x="280" y="1812" connectorStart="2:82" connectorStartCap="NONE" connectorEnd="2:109" connectorEndCap="NONE"></connector>
+    <connector id="2:145" x="280" y="1812" connectorStart="2:82" connectorStartCap="NONE" connectorEnd="2:106" connectorEndCap="NONE"></connector>
+    <connector id="2:141" x="280" y="460" connectorStart="2:79" connectorStartCap="NONE" connectorEnd="2:103" connectorEndCap="NONE"></connector>
+    <connector id="2:137" x="280" y="196" connectorStart="2:76" connectorStartCap="NONE" connectorEnd="2:100" connectorEndCap="NONE"></connector>
+    <connector id="2:133" x="280" y="2572" connectorStart="2:73" connectorStartCap="NONE" connectorEnd="2:97" connectorEndCap="NONE"></connector>
+    <connector id="2:129" x="280" y="762.4000244140625" connectorStart="2:70" connectorStartCap="NONE" connectorEnd="2:94" connectorEndCap="NONE"></connector>
+    <connector id="2:125" x="280" y="724" connectorStart="2:70" connectorStartCap="NONE" connectorEnd="2:91" connectorEndCap="NONE"></connector>
+    <connector id="2:121" x="280" y="762.4000244140625" connectorStart="2:70" connectorStartCap="NONE" connectorEnd="2:88" connectorEndCap="NONE"></connector>
+    <connector id="2:117" x="280" y="762.4000244140625" connectorStart="2:70" connectorStartCap="NONE" connectorEnd="2:85" connectorEndCap="NONE"></connector>
+  </section>
+  <section id="3:182" name="3. Backend Architecture" x="2820.60009765625" y="240" width="4108.7998046875" height="825.5999755859375">
+    <shape-with-text id="3:130" x="336" y="272" width="224" height="128" name="SQUARE">data/raw</shape-with-text>
+    <shape-with-text id="3:133" x="48" y="272" width="224" height="128" name="SQUARE">ASF Earthdata: NISAR L2 GCOV .h5</shape-with-text>
+    <connector id="3:183" x="280" y="336" connectorStart="3:133" connectorStartCap="NONE" connectorEnd="3:130" connectorEndCap="ARROW_LINES"></connector>
+    <section id="3:163" name="Python jalawatch.py - offline batch - no server or database" x="672" y="272" width="2688" height="272">
+      <shape-with-text id="3:136" x="2416" y="48" width="224" height="128" name="SQUARE">Grid density estimates</shape-with-text>
+      <shape-with-text id="3:139" x="2128" y="48" width="224" height="128" name="SQUARE">Estimate count and area per zone</shape-with-text>
+      <connector id="3:215" x="2360" y="112" connectorStart="3:139" connectorStartCap="NONE" connectorEnd="3:136" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:142" x="1840" y="48" width="224" height="128" name="SQUARE">Connected-component clustering into cage blocks</shape-with-text>
+      <connector id="3:211" x="2072" y="112" connectorStart="3:142" connectorStartCap="NONE" connectorEnd="3:139" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:145" x="1520" y="96" width="224" height="128" name="SQUARE">Bright-target threshold</shape-with-text>
+      <connector id="3:207" x="1752" y="112" connectorStart="3:145" connectorStartCap="NONE" connectorEnd="3:142" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:148" x="1232" y="96" width="224" height="128" name="SQUARE">Water mask</shape-with-text>
+      <connector id="3:203" x="1464" y="160" connectorStart="3:148" connectorStartCap="NONE" connectorEnd="3:145" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:151" x="944" y="96" width="224" height="128" name="SQUARE">Speckle filter</shape-with-text>
+      <connector id="3:199" x="1176" y="160" connectorStart="3:151" connectorStartCap="NONE" connectorEnd="3:148" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:154" x="656" y="96" width="224" height="128" name="SQUARE">Convert to dB</shape-with-text>
+      <connector id="3:195" x="888" y="160" connectorStart="3:154" connectorStartCap="NONE" connectorEnd="3:151" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:157" x="368" y="96" width="224" height="128" name="SQUARE">Crop to reservoir polygon</shape-with-text>
+      <connector id="3:191" x="600" y="160" connectorStart="3:157" connectorStartCap="NONE" connectorEnd="3:154" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="3:160" x="48" y="48" width="224" height="128" name="SQUARE">h5py: read HHHH / HVHV grids</shape-with-text>
+      <connector id="3:187" x="280" y="112" connectorStart="3:160" connectorStartCap="NONE" connectorEnd="3:157" connectorEndCap="ARROW_LINES"></connector>
+    </section>
+    <connector id="3:219" x="568" y="336" connectorStart="3:130" connectorStartCap="NONE" connectorEnd="3:160" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:164" x="336" y="464" width="224" height="128" name="SQUARE">Reservoir boundary GeoJSON</shape-with-text>
+    <connector id="3:223" x="568" y="432" connectorStart="3:164" connectorStartCap="NONE" connectorEnd="3:157" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:167" x="3504" y="240" width="224" height="128" name="SQUARE">CSV: estimated counts per date and zone</shape-with-text>
+    <connector id="3:227" x="3320" y="304" connectorStart="3:136" connectorStartCap="NONE" connectorEnd="3:167" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:170" x="3526.39990234375" y="432" width="224" height="128" name="SQUARE">GeoJSON: detected cage candidate points/blocks</shape-with-text>
+    <connector id="3:231" x="3320" y="384" connectorStart="3:136" connectorStartCap="NONE" connectorEnd="3:170" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:173" x="3504" y="48" width="224" height="128" name="SQUARE">PNG/GeoTIFF: estimated density maps</shape-with-text>
+    <connector id="3:235" x="3320" y="112" connectorStart="3:136" connectorStartCap="NONE" connectorEnd="3:173" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:176" x="3836.800048828125" y="432" width="224" height="128" name="SQUARE">Validation: visual check against Google Earth imagery</shape-with-text>
+    <connector id="3:239" x="3758.39990234375" y="496" connectorStart="3:170" connectorStartCap="NONE" connectorEnd="3:176" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="3:179" x="3504" y="624" width="268.79998779296875" height="153.60000610351562" name="SQUARE">Detection hypothesis: calm water is dark and cages may appear as bright points - estimates require validation</shape-with-text>
+    <connector id="3:243" x="2424" y="432" connectorStart="3:145" connectorStartCap="NONE" connectorEnd="3:179" connectorEndCap="ARROW_LINES"></connector>
+  </section>
+  <section id="4:250" name="4. Frontend Architecture" x="7105.39990234375" y="240" width="2576" height="917.5428466796875">
+    <section id="4:221" name="Backend outputs - estimates" x="48" y="215.6904754638672" width="320" height="608">
+      <shape-with-text id="4:212" x="48" y="48.00001525878906" width="224" height="128" name="SQUARE">CSV</shape-with-text>
+      <shape-with-text id="4:215" x="48" y="240.00001525878906" width="224" height="128" name="SQUARE">GeoJSON</shape-with-text>
+      <shape-with-text id="4:218" x="48" y="432" width="224" height="128" name="SQUARE">PNG</shape-with-text>
+    </section>
+    <section id="4:246" name="Static web dashboard - HTML / JavaScript" x="496" y="48" width="1728" height="821.5428466796875">
+      <shape-with-text id="4:222" x="400" y="444.6666564941406" width="224" height="128" name="SQUARE">Static file loader</shape-with-text>
+      <shape-with-text id="4:225" x="1456" y="452.5428466796875" width="224" height="128" name="SQUARE">Total cages detected - estimated</shape-with-text>
+      <connector id="4:263" x="632" y="508.6666259765625" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:225" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="4:228" x="1456" y="48" width="224" height="128" name="SQUARE">Estimated density status: green / yellow / red</shape-with-text>
+      <connector id="4:267" x="632" y="82.83332824707031" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:228" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="4:231" x="784" y="126.54286193847656" width="224" height="128" name="SQUARE">Date slider</shape-with-text>
+      <connector id="4:291" x="1016.00048828125" y="91.5" connectorStart="4:231" connectorStartCap="NONE" connectorEnd="4:228" connectorEndCap="ARROW_LINES">Select date</connector>
+      <connector id="4:287" x="1016.00048828125" y="190.5428466796875" connectorStart="4:231" connectorStartCap="NONE" connectorEnd="4:225" connectorEndCap="ARROW_LINES">Select date</connector>
+      <connector id="4:271" x="632" y="190.54286193847656" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:231" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="4:234" x="784" y="645.5428466796875" width="224" height="128" name="SQUARE">Count trend chart - Chart.js</shape-with-text>
+      <connector id="4:275" x="632" y="508.6666259765625" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:234" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="4:237" x="1456" y="240" width="224" height="128" name="SQUARE">Leaflet reservoir map</shape-with-text>
+      <connector id="4:283" x="1016.00048828125" y="172.0428466796875" connectorStart="4:231" connectorStartCap="NONE" connectorEnd="4:237" connectorEndCap="ARROW_LINES">Select date</connector>
+      <connector id="4:279" x="632" y="304" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:237" connectorEndCap="ARROW_LINES"></connector>
+      <shape-with-text id="4:240" x="48" y="424.8381042480469" width="224" height="128" name="SQUARE">About the data: NASA / ISRO / ASF credits</shape-with-text>
+      <connector id="4:299" x="280" y="488.838134765625" connectorStart="4:240" connectorStartCap="NONE" connectorEnd="4:222" connectorEndCap="NONE"></connector>
+      <shape-with-text id="4:243" x="1104" y="260.5428466796875" width="224" height="128" name="SQUARE">Sonar/radar theme: dark navy - rotating sonar sweep over reservoir - cages as blinking dots</shape-with-text>
+      <connector id="4:295" x="1336" y="304" connectorStart="4:243" connectorStartCap="NONE" connectorEnd="4:237" connectorEndCap="ARROW_LINES"></connector>
+    </section>
+    <connector id="4:259" x="328" y="595.066650390625" connectorStart="4:218" connectorStartCap="NONE" connectorEnd="4:222" connectorEndCap="ARROW_LINES"></connector>
+    <connector id="4:255" x="328" y="519.6904907226562" connectorStart="4:215" connectorStartCap="NONE" connectorEnd="4:222" connectorEndCap="ARROW_LINES"></connector>
+    <connector id="4:251" x="328" y="327.69049072265625" connectorStart="4:212" connectorStartCap="NONE" connectorEnd="4:222" connectorEndCap="ARROW_LINES"></connector>
+    <shape-with-text id="4:247" x="2304" y="596.5428466796875" width="224" height="128" name="SQUARE">Deploy static assets on GitHub Pages or Vercel</shape-with-text>
+    <connector id="4:303" x="1128" y="556.6666259765625" connectorStart="4:222" connectorStartCap="NONE" connectorEnd="4:247" connectorEndCap="ARROW_LINES"></connector>
+  </section>
+</canvas>
+
+Saved this image to disk at file:///cursor/stores/user/grok-bot/agents/a0bc67c5-82a0-423e-a465-b8a8d4b20e3c/assets/eadf8c648dd8f18edc5e67c60ebf4f403c97e552c523f307fc3f43c40c001911.png (1024x320). To show it to the user, pass that path to SendToUser as {"type":"attachment","url":"file:///cursor/stores/user/grok-bot/agents/a0bc67c5-82a0-423e-a465-b8a8d4b20e3c/assets/eadf8c648dd8f18edc5e67c60ebf4f403c97e552c523f307fc3f43c40c001911.png"}.
+
+</cursor_untrusted_data_1337>

@@ -1,0 +1,14 @@
+import {chromium} from '@playwright/test';
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
+const page=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'});
+const failures=[];page.on('pageerror',e=>failures.push(e.message));page.on('response',r=>{if(r.status()>=400)failures.push(`${r.status()} ${r.url()}`)});
+await page.goto('http://localhost:4173/jalawatch/');await page.evaluate(()=>document.fonts.ready);
+await page.locator('#dashboard').scrollIntoViewIfNeeded();await page.locator('#date-slider').fill('6');
+if(await page.locator('#total').textContent()!=='18.158')throw Error('Pages subpath data failed');
+await page.locator('[data-trend="total"]').click();
+if(!await page.evaluate(()=>document.fonts.check('600 20px Unbounded')))throw Error('Local display font not loaded');
+if(await page.locator('.zone-over').count()!==3)throw Error('Over-limit pulse class not applied');
+await page.locator('#fitur').scrollIntoViewIfNeeded();await page.locator('#carousel').focus();await page.keyboard.press('ArrowRight');
+if(!((await page.locator('.feature-card.active').textContent()).includes('Ekspor laporan')))throw Error('Keyboard carousel failed');
+console.log(JSON.stringify({pagesSubpath:true,localFonts:true,overLimitClasses:true,keyboardCarousel:true,failures}));
+await browser.close();if(failures.length)process.exit(1);

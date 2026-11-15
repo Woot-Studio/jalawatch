@@ -1,0 +1,1 @@
+{"installCommand":"cd web && bun install --frozen-lockfile","buildCommand":"cd web && bun run build","outputDirectory":"web/dist"}

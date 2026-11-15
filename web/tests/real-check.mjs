@@ -1,0 +1,10 @@
+﻿import {chromium} from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:900}});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+await page.goto('http://localhost:4173');await page.waitForTimeout(1500);
+await page.locator('#dashboard').scrollIntoViewIfNeeded();await page.waitForTimeout(2500);
+await page.screenshot({path:'../artifacts/dash-real.png'});
+console.log(JSON.stringify({total:await page.locator('#total').textContent(),delta:await page.locator('#delta').textContent(),pos:await page.locator('#date-position').textContent(),zone:await page.locator('#my-zone').textContent(),err:await page.locator('#load-error').isVisible(),errors}));
+await page.locator('#tentang').scrollIntoViewIfNeeded();await page.waitForTimeout(1200);await page.screenshot({path:'../artifacts/about-real.png'});
+await browser.close();

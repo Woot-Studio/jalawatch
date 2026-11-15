@@ -1,0 +1,6 @@
+date,id,name,count,area_m2,limit,density,status,label,note
+2026-11-06,Z-01,Zona 1 (Barat),8849,884900.0,4600,7.0,Melebihi batas,Data asli NISAR,"estimasi otomatis, perlu validasi lapangan"
+2026-11-06,Z-02,Zona 2 (Barat-Tengah),6672,667200.0,4100,6.6,Melebihi batas,Data asli NISAR,"estimasi otomatis, perlu validasi lapangan"
+2026-11-06,Z-03,Zona 3 (Tengah),7219,721900.0,3700,5.6,Melebihi batas,Data asli NISAR,"estimasi otomatis, perlu validasi lapangan"
+2026-11-06,Z-04,Zona 4 (Timur-Tengah),6863,686300.0,2900,5.7,Melebihi batas,Data asli NISAR,"estimasi otomatis, perlu validasi lapangan"
+2026-11-06,Z-05,Zona 5 (Timur),4645,464500.0,2800,9.1,Melebihi batas,Data asli NISAR,"estimasi otomatis, perlu validasi lapangan"
