@@ -44,6 +44,12 @@ def read_gcov(path):
             raise ValueError('HHHH/HVHV must be 2D grids of the same size')
         x, y = group['xCoordinates'][:], group['yCoordinates'][:]
         dx, dy = float(group['xCoordinateSpacing'][()]), float(group['yCoordinateSpacing'][()])
+        if x.ndim != 1 or y.ndim != 1 or hh.shape != (y.size, x.size) or not x.size or not y.size:
+            raise ValueError('Coordinate vectors must match the covariance grid dimensions')
+        if not np.isfinite(x).all() or not np.isfinite(y).all() or not np.isfinite([dx, dy]).all():
+            raise ValueError('Grid coordinates and spacing must be finite')
+        if not np.allclose(np.diff(x), dx, rtol=1e-5, atol=1e-6) or not np.allclose(np.diff(y), dy, rtol=1e-5, atol=1e-6):
+            raise ValueError('Coordinate vectors must agree with declared grid spacing')
         crs = CRS.from_epsg(int(group['projection'][()]))
         if dx <= 0 or dy >= 0 or not crs.is_projected or crs.axis_info[0].unit_name != 'metre':
             raise ValueError('Grid must be north-up, projected, and in metres')
