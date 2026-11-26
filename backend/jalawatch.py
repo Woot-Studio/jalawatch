@@ -176,6 +176,8 @@ def main():
     global LABEL, NOTE
     if not args.demo:
         LABEL, NOTE = 'Real NISAR data', 'automated estimate, needs field validation'  # REAL_LABEL
+    if not np.isfinite([args.target_db, args.water_db, args.cage_area, args.density_sigma]).all():
+        p.error('Detection thresholds, cage area and density sigma must be finite')
     if args.filter_size < 1 or args.filter_size%2 != 1 or args.cage_area <= 0 or args.min_pixels < 1 or args.density_sigma <= 0:
         p.error('Filter size must be a positive odd number; cage area, minimum pixels and sigma must be positive')
     reservoir=load_geometry(args.reservoir); zones=json.loads(args.zones.read_text())
