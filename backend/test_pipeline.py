@@ -14,6 +14,29 @@ from shapely.geometry import shape
 import jalawatch as jw
 
 class PipelineTest(unittest.TestCase):
+    def test_rejects_invalid_grid_metadata(self):
+        cases = [
+            ('wrong length', [0.0, 10.0], [20.0, 10.0], 10.0, -10.0),
+            ('nonfinite coordinate', [0.0, 10.0, np.nan], [20.0, 10.0], 10.0, -10.0),
+            ('nonfinite spacing', [0.0, 10.0, 20.0], [20.0, 10.0], np.nan, -10.0),
+            ('irregular grid', [0.0, 10.0, 25.0], [20.0, 10.0], 10.0, -10.0),
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'NISAR_20261014.h5'
+            for label, x, y, dx, dy in cases:
+                with self.subTest(label=label):
+                    with h5py.File(path, 'w') as f:
+                        g = f.create_group('/science/LSAR/GCOV/grids/frequencyA')
+                        for name, value in [
+                            ('HHHH', np.ones((2, 3))), ('HVHV', np.ones((2, 3))),
+                            ('xCoordinates', x), ('yCoordinates', y),
+                            ('xCoordinateSpacing', dx), ('yCoordinateSpacing', dy),
+                            ('projection', 32748),
+                        ]:
+                            g.create_dataset(name, data=value)
+                    with self.assertRaisesRegex(ValueError, 'Coordinate vectors|Grid coordinates'):
+                        jw.read_gcov(path)
+
     def test_hdf5_detection_and_outputs(self):
         reservoir=jw.load_geometry(jw.ROOT/'backend/reservoir.geojson')
         polygon=jw.transform_geometry(Transformer.from_crs(4326,32748,always_xy=True).transform,reservoir)
